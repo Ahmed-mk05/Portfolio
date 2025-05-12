@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="fr" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            bg: '#1a1a1a',
+                            text: '#ffffff',
+                            primary: '#3b82f6',
+                            secondary: '#4f46e5'
+                        }
+                    },
+                    animation: {
+                        'spin-slow': 'spin 8s linear infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                        'float-delay-1': 'float 3s ease-in-out 0.2s infinite',
+                        'float-delay-2': 'float 3s ease-in-out 0.4s infinite',
+                        'float-delay-3': 'float 3s ease-in-out 0.6s infinite',
+                        'float-delay-4': 'float 3s ease-in-out 0.8s infinite',
+                        'bounce-slow': 'bounce 2s infinite'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid white;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end),
+                       blink-caret .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: white }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-dark-bg transition-colors duration-300">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white dark:bg-dark-bg shadow-md z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-bold text-gray-800 dark:text-white">Portfolio</div>
+                <div class="flex items-center space-x-8">
+                    <div class="hidden md:flex space-x-8">
+                        <a href="#accueil" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition">Accueil</a>
+                        <a href="#apropos" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition">À propos</a>
+                        <a href="#projets" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition">Projets</a>
+                        <a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition">Contact</a>
+                    </div>
+                    <button id="theme-toggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition">
+                        <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+                        <i class="fas fa-moon text-blue-300 hidden dark:block"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Section Accueil -->
+    <section id="accueil" class="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600 dark:from-blue-600 dark:to-purple-700 relative overflow-hidden">
+        <!-- Particules d'arrière-plan -->
+        <div class="absolute inset-0" id="particles-js"></div>
+        
+        <!-- Overlay avec motif -->
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-transparent to-black/50"></div>
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAzNGMwIDIuMjA5LTEuNzkxIDQtNCA0cy00LTEuNzkxLTQtNCAxLjc5MS00IDQtNCA0IDEuNzkxIDQgNHoiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iLjEiLz48L2c+PC9zdmc+')] opacity-20"></div>
+
+        <div class="text-center text-white relative z-10" data-aos="fade-up">
+            <!-- Photo de profil avec effet de brillance -->
+            <div class="relative mb-8 inline-block">
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full blur-xl opacity-50 animate-pulse"></div>
+                <img src="image/meee.jpg" alt="Photo de profil" 
+                     class="w-40 h-40 rounded-full mx-auto border-4 border-white shadow-lg transform hover:scale-105 transition duration-500 relative z-10">
+            </div>
+
+            <!-- Titre avec effet de machine à écrire -->
+            <h1 class="text-5xl md:text-7xl font-bold mb-4 typewriter bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200">
+                HI, I'M AHMED MK
+            </h1>
+
+            <!-- Sous-titre avec animation et badges -->
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+                <span class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium animate-float">
+                    <i class="fas fa-code mr-2"></i>Développeur Web
+                </span>
+                <span class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium animate-float-delay-1">
+                    <i class="fas fa-paint-brush mr-2"></i>Designer UI/UX
+                </span>
+                <span class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium animate-float-delay-2">
+                    <i class="fas fa-mobile-alt mr-2"></i>Responsive Design
+                </span>
+            </div>
+
+            <!-- Boutons d'action avec effets -->
+            <div class="flex justify-center space-x-4">
+                <a href="#projets" class="group relative bg-white text-blue-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition overflow-hidden">
+                    <span class="relative z-10 flex items-center">
+                        <i class="fas fa-project-diagram mr-2"></i>
+                        Voir mes projets
+                    </span>
+                    <div class="absolute inset-0 bg-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+                    <span class="absolute inset-0 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i class="fas fa-project-diagram mr-2"></i>
+                        Voir mes projets
+                    </span>
+                </a>
+                <a href="#contact" class="group relative border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition overflow-hidden">
+                    <span class="relative z-10 flex items-center">
+                        <i class="fas fa-envelope mr-2"></i>
+                        Me contacter
+                    </span>
+                    <div class="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+                    <span class="absolute inset-0 flex items-center justify-center text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i class="fas fa-envelope mr-2"></i>
+                        Me contacter
+                    </span>
+                </a>
+            </div>
+
+            <!-- Icônes de compétences flottantes -->
+            <div class="absolute bottom-20 left-0 right-0 flex justify-center space-x-8 opacity-50">
+                <i class="fab fa-html5 text-2xl animate-float-delay-1"></i>
+                <i class="fab fa-css3-alt text-2xl animate-float-delay-2"></i>
+                <i class="fab fa-js text-2xl animate-float-delay-3"></i>
+                <i class="fab fa-react text-2xl animate-float-delay-4"></i>
+            </div>
+        </div>
+
+        <!-- Flèche de défilement animée -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+            <a href="#apropos" class="text-white animate-bounce-slow">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Section À propos -->
+    <section id="apropos" class="py-20 bg-white dark:bg-dark-bg">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white" data-aos="fade-up">À propos de moi</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div data-aos="fade-right">
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">
+                        Je suis un développeur web passionné par la création d'expériences numériques innovantes.
+                        Mon expertise couvre le développement front-end et back-end, avec une attention particulière
+                        portée à l'expérience utilisateur.
+                    </p>
+                </div>
+                <div data-aos="fade-left">
+                    <div class="space-y-4">
+                        <div class="skill-bar">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-800 dark:text-white">HTML/CSS</span>
+                                <span class="text-gray-600 dark:text-gray-300">90%</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded">
+                                <div class="h-full bg-blue-500 dark:bg-blue-600 rounded skill-progress" data-width="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-800 dark:text-white">JavaScript</span>
+                                <span class="text-gray-600 dark:text-gray-300">85%</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded">
+                                <div class="h-full bg-blue-500 dark:bg-blue-600 rounded skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-800 dark:text-white">React</span>
+                                <span class="text-gray-600 dark:text-gray-300">80%</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded">
+                                <div class="h-full bg-blue-500 dark:bg-blue-600 rounded skill-progress" data-width="80"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Projets -->
+    <section id="projets" class="py-20 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white" data-aos="fade-up">Mes Projets</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Carte Projet 1 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition group" data-aos="fade-up">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                             alt="Projet E-commerce" 
+                             class="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <div class="flex space-x-2">
+                                    <span class="px-2 py-1 bg-blue-500 text-white text-sm rounded">React</span>
+                                    <span class="px-2 py-1 bg-green-500 text-white text-sm rounded">Node.js</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">Projet E-commerce</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Une plateforme e-commerce moderne avec React et Node.js</p>
+                    </div>
+                </div>
+
+                <!-- Carte Projet 2 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                             alt="Application de Gestion" 
+                             class="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <div class="flex space-x-2">
+                                    <span class="px-2 py-1 bg-purple-500 text-white text-sm rounded">Vue.js</span>
+                                    <span class="px-2 py-1 bg-yellow-500 text-white text-sm rounded">Firebase</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">Application de Gestion</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Système de gestion de tâches avec Vue.js</p>
+                    </div>
+                </div>
+
+                <!-- Carte Projet 3 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                             alt="Portfolio Artistique" 
+                             class="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <div class="flex space-x-2">
+                                    <span class="px-2 py-1 bg-pink-500 text-white text-sm rounded">HTML/CSS</span>
+                                    <span class="px-2 py-1 bg-blue-400 text-white text-sm rounded">JavaScript</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">Portfolio Artistique</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Site vitrine pour un artiste avec animations CSS</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Détail des Projets -->
+    <section class="py-20 bg-white dark:bg-dark-bg">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 text-gray-800 dark:text-white" data-aos="fade-up">
+                Découvrez mes Projets en Détail
+            </h2>
+
+            <!-- Projet 1 -->
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-20" data-aos="fade-up">
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg transform group-hover:scale-105 transition-transform duration-500"></div>
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                         alt="Projet E-commerce" 
+                         class="relative z-10 rounded-lg shadow-xl">
+                </div>
+                <div class="space-y-6">
+                    <h3 class="text-3xl font-bold text-gray-800 dark:text-white">Projet E-commerce</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Une plateforme e-commerce moderne développée avec React et Node.js. Le projet inclut des fonctionnalités avancées comme :
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-gray-600 dark:text-gray-300">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Système de paiement sécurisé
+                        </li>
+                        <li class="flex items-center text-gray-600 dark:text-gray-300">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Gestion des stocks en temps réel
+                        </li>
+                        <li class="flex items-center text-gray-600 dark:text-gray-300">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Interface utilisateur responsive
+                        </li>
+                    </ul>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded-full text-sm">React</span>
+                        <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-300 rounded-full text-sm">Node.js</span>
+                        <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-600 dark:text-yellow-300 rounded-full text-sm">MongoDB</span>
+                    </div>
+                    <a href="#" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition">
+                        Voir le projet <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Projet 2 -->
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-20" data-aos="fade-up">
+                <div class="order-2 md:order-1 space-y-6">
+                    <h3 class="text-3xl font-bold text-gray-800 dark:text-white">Application de Gestion</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Une application de gestion de tâches complète développée avec Vue.js et Firebase. Caractéristiques principales :
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-gray-600 dark:text-gray-300">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Authentification en temps réel
+                        </li>
+                        <li class="flex items-center text-gray-600 dark:text-gray-300">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Synchronisation multi-appareils
+                        </li>
+                        <li class="flex items-center text-gray-600 dark:text-gray-300">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Tableaux de bord personnalisables
+                        </li>
+                    </ul>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 rounded-full text-sm">Vue.js</span>
+                        <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-600 dark:text-yellow-300 rounded-full text-sm">Firebase</span>
+                        <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded-full text-sm">Tailwind CSS</span>
+                    </div>
+                    <a href="#" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition">
+                        Voir le projet <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                <div class="relative group order-1 md:order-2">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg transform group-hover:scale-105 transition-transform duration-500"></div>
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                         alt="Application de Gestion" 
+                         class="relative z-10 rounded-lg shadow-xl">
+                </div>
+            </div>
+
+            <!-- Projet 3 -->
+            <div class="grid md:grid-cols-2 gap-12 items-center" data-aos="fade-up">
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-pink-500 to-orange-600 rounded-lg transform group-hover:scale-105 transition-transform duration-500"></div>
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                         alt="Portfolio Artistique" 
+                         class="relative z-10 rounded-lg shadow-xl">
+                </div>
+                <div class="space-y-6">
+                    <h3 class="text-3xl font-bold text-gray-800 dark:text-white">Portfolio Artistique</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Un portfolio artistique moderne avec des animations fluides et une expérience utilisateur immersive. Points forts :
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-gray-600 dark:text-gray-300">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Animations CSS avancées
+                        </li>
+                        <li class="flex items-center text-gray-600 dark:text-gray-300">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Galerie interactive
+                        </li>
+                        <li class="flex items-center text-gray-600 dark:text-gray-300">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Design minimaliste et élégant
+                        </li>
+                    </ul>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-3 py-1 bg-pink-100 dark:bg-pink-900 text-pink-600 dark:text-pink-300 rounded-full text-sm">HTML/CSS</span>
+                        <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded-full text-sm">JavaScript</span>
+                        <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 rounded-full text-sm">GSAP</span>
+                    </div>
+                    <a href="#" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition">
+                        Voir le projet <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="py-20 bg-white dark:bg-dark-bg relative overflow-hidden">
+        <!-- Fond animé -->
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-50 to-transparent dark:from-blue-900/20 dark:to-transparent"></div>
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAzNGMwIDIuMjA5LTEuNzkxIDQtNCA0cy00LTEuNzkxLTQtNCAxLjc5MS00IDQtNCA0IDEuNzkxIDQgNHoiIGZpbGw9IiMzODJCNkYiIGZpbGwtb3BhY2l0eT0iLjEiLz48L2c+PC9zdmc+')] opacity-20"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-gray-800 dark:text-white mb-4">Contactez-moi</h2>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    Prêt à collaborer sur votre prochain projet ? N'hésitez pas à me contacter via le formulaire ci-dessous ou directement par email.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Formulaire de contact -->
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 transform hover:scale-105 transition duration-500" data-aos="fade-right">
+                    <form class="space-y-6">
+                        <div class="relative">
+                            <input type="text" id="name" class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 transition-colors" placeholder="Votre nom">
+                            <label for="name" class="absolute left-4 -top-2.5 bg-white dark:bg-gray-800 px-2 text-sm text-gray-600 dark:text-gray-300">Nom</label>
+                        </div>
+                        <div class="relative">
+                            <input type="email" id="email" class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 transition-colors" placeholder="Votre email">
+                            <label for="email" class="absolute left-4 -top-2.5 bg-white dark:bg-gray-800 px-2 text-sm text-gray-600 dark:text-gray-300">Email</label>
+                        </div>
+                        <div class="relative">
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 transition-colors" placeholder="Votre message"></textarea>
+                            <label for="message" class="absolute left-4 -top-2.5 bg-white dark:bg-gray-800 px-2 text-sm text-gray-600 dark:text-gray-300">Message</label>
+                        </div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
+                            Envoyer le message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Informations de contact -->
+                <div class="space-y-8" data-aos="fade-left">
+                    <!-- Carte de contact -->
+                    <div class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl p-8 text-white transform hover:scale-105 transition duration-500">
+                        <h3 class="text-2xl font-bold mb-6">Informations de contact</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-4">
+                                <div class="bg-white/20 p-3 rounded-lg">
+                                    <i class="fas fa-envelope text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-white/80">Email</p>
+                                    <p class="font-semibold">contact@example.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="bg-white/20 p-3 rounded-lg">
+                                    <i class="fas fa-phone text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-white/80">Téléphone</p>
+                                    <p class="font-semibold">+33 6 12 34 56 78</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="bg-white/20 p-3 rounded-lg">
+                                    <i class="fas fa-map-marker-alt text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-white/80">Localisation</p>
+                                    <p class="font-semibold">Paris, France</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Réseaux sociaux -->
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl">
+                        <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Suivez-moi</h3>
+                        <div class="grid grid-cols-4 gap-4">
+                            <a href="#" class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg text-center transform hover:scale-110 transition duration-300">
+                                <i class="fab fa-github text-2xl text-gray-800 dark:text-white"></i>
+                            </a>
+                            <a href="#" class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg text-center transform hover:scale-110 transition duration-300">
+                                <i class="fab fa-linkedin text-2xl text-blue-600"></i>
+                            </a>
+                            <a href="#" class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg text-center transform hover:scale-110 transition duration-300">
+                                <i class="fab fa-twitter text-2xl text-blue-400"></i>
+                            </a>
+                            <a href="#" class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg text-center transform hover:scale-110 transition duration-300">
+                                <i class="fab fa-instagram text-2xl text-pink-500"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-gray-900 to-gray-800 dark:from-gray-900 dark:to-gray-800 text-white py-16 relative overflow-hidden">
+        <!-- Motif de fond -->
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAzNGMwIDIuMjA5LTEuNzkxIDQtNCA0cy00LTEuNzkxLTQtNCAxLjc5MS00IDQtNCA0IDEuNzkxIDQgNHoiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iLjEiLz48L2c+PC9zdmc+')] opacity-10"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid md:grid-cols-4 gap-12">
+                <!-- Logo et description -->
+                <div class="col-span-2 md:col-span-1">
+                    <h3 class="text-2xl font-bold mb-4">Portfolio</h3>
+                    <p class="text-gray-400 mb-6">
+                        Développeur web créatif passionné par la création d'expériences numériques innovantes.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-white/10 p-3 rounded-full hover:bg-white/20 transition-colors">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="bg-white/10 p-3 rounded-full hover:bg-white/20 transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="bg-white/10 p-3 rounded-full hover:bg-white/20 transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Liens rapides -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Liens Rapides</h4>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="#accueil" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2"></i>
+                                Accueil
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#apropos" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2"></i>
+                                À propos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#projets" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2"></i>
+                                Projets
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#contact" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2"></i>
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-3">
+                        <li class="text-gray-400 flex items-center">
+                            <i class="fas fa-code text-blue-400 mr-2"></i>
+                            Développement Web
+                        </li>
+                        <li class="text-gray-400 flex items-center">
+                            <i class="fas fa-paint-brush text-purple-400 mr-2"></i>
+                            Design UI/UX
+                        </li>
+                        <li class="text-gray-400 flex items-center">
+                            <i class="fas fa-mobile-alt text-green-400 mr-2"></i>
+                            Applications Mobiles
+                        </li>
+                        <li class="text-gray-400 flex items-center">
+                            <i class="fas fa-search text-yellow-400 mr-2"></i>
+                            SEO
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Restez informé de mes derniers projets</p>
+                    <form class="space-y-3">
+                        <div class="relative">
+                            <input type="email" placeholder="Votre email" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-blue-500 text-white placeholder-gray-400">
+                        </div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-300">
+                            S'abonner
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Séparateur -->
+            <div class="border-t border-white/10 my-8"></div>
+
+            <!-- Copyright -->
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                    © 2024 Portfolio. Tous droits réservés.
+                </p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Mentions légales</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Politique de confidentialité</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Conditions d'utilisation</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
