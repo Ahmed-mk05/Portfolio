@@ -58,105 +58,119 @@
             from, to { border-color: transparent }
             50% { border-color: white }
         }
+
+        /* Animation fade-in et slide */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out forwards;
+        }
+        .fade-in-up.delay-1 { animation-delay: 0.3s; }
+        .fade-in-up.delay-2 { animation-delay: 0.6s; }
+        .fade-in-up.delay-3 { animation-delay: 0.9s; }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Halo lumineux animé autour de la photo */
+        .halo-anim {
+            position: absolute;
+            inset: -16px;
+            border-radius: 9999px;
+            background: conic-gradient(from 0deg, #60a5fa, #a78bfa, #f472b6, #60a5fa);
+            filter: blur(18px);
+            opacity: 0.5;
+            z-index: 0;
+            animation: haloSpin 4s linear infinite;
+        }
+        @keyframes haloSpin {
+            100% { transform: rotate(360deg); }
+        }
+        /* Badge flottant */
+        .float-badge {
+            animation: floatBadge 2.5s ease-in-out infinite alternate;
+        }
+        @keyframes floatBadge {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
     </style>
 </head>
 <body class="bg-gray-50 dark:bg-dark-bg transition-colors duration-300">
     <!-- Navigation -->
-    <nav class="fixed w-full bg-white dark:bg-dark-bg shadow-md z-50 transition-all duration-300">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="text-2xl font-bold text-gray-800 dark:text-white">Portfolio</div>
-                <div class="flex items-center space-x-8">
-                    <div class="hidden md:flex space-x-8">
-                        <a href="#accueil" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition">Accueil</a>
-                        <a href="#apropos" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition">À propos</a>
-                        <a href="#projets" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition">Projets</a>
-                        <a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition">Contact</a>
-                    </div>
-                    <button id="theme-toggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition">
-                        <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
-                        <i class="fas fa-moon text-blue-300 hidden dark:block"></i>
-                    </button>
-                </div>
-            </div>
+    <nav class="fixed w-full top-0 left-0 z-50 bg-white/60 dark:bg-dark-bg/80 shadow-lg backdrop-blur-md rounded-b-2xl mx-auto px-4 py-2 flex items-center justify-between">
+        <div class="flex items-center space-x-4">
+            <span class="text-2xl font-extrabold text-blue-700 dark:text-white tracking-wider">AhmedMK</span>
+        </div>
+        <div class="hidden md:flex flex-1 justify-center space-x-8">
+            <a href="#accueil" class="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition text-lg font-medium">Accueil</a>
+            <a href="#apropos" class="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition text-lg font-medium">À propos</a>
+            <a href="#projets" class="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition text-lg font-medium">Projets</a>
+            <a href="#contact" class="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition text-lg font-medium">Contact</a>
+        </div>
+        <div class="flex items-center space-x-2">
+            <button id="theme-toggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition">
+                <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+                <i class="fas fa-moon text-blue-300 hidden dark:block"></i>
+            </button>
+            <!-- Menu burger mobile -->
+            <button id="menu-toggle" class="md:hidden p-2 ml-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition">
+                <i class="fas fa-bars text-xl text-blue-700 dark:text-white"></i>
+            </button>
+        </div>
+        <!-- Menu mobile -->
+        <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-white/90 dark:bg-dark-bg/95 z-50 flex-col items-center justify-center hidden">
+            <button id="close-menu" class="absolute top-6 right-8 text-3xl text-blue-700 dark:text-white">&times;</button>
+            <nav class="flex flex-col space-y-8 items-center justify-center h-full">
+                <a href="#accueil" class="text-2xl font-bold text-blue-700 dark:text-white hover:text-blue-500 dark:hover:text-blue-400 transition">Accueil</a>
+                <a href="#apropos" class="text-2xl font-bold text-blue-700 dark:text-white hover:text-blue-500 dark:hover:text-blue-400 transition">À propos</a>
+                <a href="#projets" class="text-2xl font-bold text-blue-700 dark:text-white hover:text-blue-500 dark:hover:text-blue-400 transition">Projets</a>
+                <a href="#contact" class="text-2xl font-bold text-blue-700 dark:text-white hover:text-blue-500 dark:hover:text-blue-400 transition">Contact</a>
+            </nav>
         </div>
     </nav>
 
-    <!-- Section Accueil -->
-    <section id="accueil" class="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600 dark:from-blue-600 dark:to-purple-700 relative overflow-hidden">
-        <!-- Particules d'arrière-plan -->
-        <div class="absolute inset-0" id="particles-js"></div>
-        
-        <!-- Overlay avec motif -->
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-transparent to-black/50"></div>
-        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAzNGMwIDIuMjA5LTEuNzkxIDQtNCA0cy00LTEuNzkxLTQtNCAxLjc5MS00IDQtNCA0IDEuNzkxIDQgNHoiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iLjEiLz48L2c+PC9zdmc+')] opacity-20"></div>
-
-        <div class="text-center text-white relative z-10" data-aos="fade-up">
-            <!-- Photo de profil avec effet de brillance -->
-            <div class="relative mb-8 inline-block">
-                <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full blur-xl opacity-50 animate-pulse"></div>
-                <img src="image/meee.jpg" alt="Photo de profil" 
-                     class="w-40 h-40 rounded-full mx-auto border-4 border-white shadow-lg transform hover:scale-105 transition duration-500 relative z-10">
+    <!-- Nouvelle Home Page -->
+    <section id="accueil" class="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-blue-50 via-white to-blue-100 dark:from-gray-900 dark:via-dark-bg dark:to-gray-900 pt-32 pb-10">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-12 px-6">
+            <!-- Texte à gauche -->
+            <div class="flex-1 text-left md:pr-12">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-blue-800 dark:text-white mb-4 leading-tight fade-in-up">
+                    Salut, je suis <span class="text-blue-500 dark:text-blue-400">Ahmed Mkhier</span>
+                </h1>
+                <div class="inline-block mb-4 px-5 py-2 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 font-semibold text-lg shadow float-badge fade-in-up delay-1">
+                    Développeur Full Stack
+                </div>
+                <p class="text-gray-700 dark:text-gray-300 text-lg mb-8 max-w-lg fade-in-up delay-2">
+                    Passionné par la création d'expériences numériques modernes, j'aime transformer des idées en solutions concrètes et élégantes.
+                </p>
+                <div class="flex flex-wrap gap-4 mb-8 fade-in-up delay-3">
+                    <a href="#projets" class="bg-blue-600 text-white px-7 py-3 rounded-full font-semibold shadow hover:bg-blue-700 transition">Voir mes projets</a>
+                    <a href="#contact" class="border-2 border-blue-600 text-blue-600 dark:text-blue-400 px-7 py-3 rounded-full font-semibold hover:bg-blue-600 hover:text-white transition">Me contacter</a>
+                </div>
+                <div class="flex space-x-4 mt-4 fade-in-up delay-3">
+                    <i class="fab fa-html5 text-2xl text-orange-500"></i>
+                    <i class="fab fa-css3-alt text-2xl text-blue-500"></i>
+                    <i class="fab fa-js text-2xl text-yellow-400"></i>
+                    <i class="fab fa-csharp text-2xl text-purple-500"></i>
+                </div>
             </div>
-
-            <!-- Titre avec effet de machine à écrire -->
-            <h1 class="text-5xl md:text-7xl font-bold mb-4 typewriter bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200">
-                HI, I'M AHMED MK
-            </h1>
-
-            <!-- Sous-titre avec animation et badges -->
-            <div class="flex flex-wrap justify-center gap-4 mb-8">
-                <span class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium animate-float">
-                    <i class="fas fa-code mr-2"></i>Développeur Web
-                </span>
-                <span class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium animate-float-delay-1">
-                    <i class="fas fa-paint-brush mr-2"></i>Designer UI/UX
-                </span>
-                <span class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium animate-float-delay-2">
-                    <i class="fas fa-mobile-alt mr-2"></i>Responsive Design
-                </span>
-            </div>
-
-            <!-- Boutons d'action avec effets -->
-            <div class="flex justify-center space-x-4">
-                <a href="#projets" class="group relative bg-white text-blue-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition overflow-hidden">
-                    <span class="relative z-10 flex items-center">
-                        <i class="fas fa-project-diagram mr-2"></i>
-                        Voir mes projets
-                    </span>
-                    <div class="absolute inset-0 bg-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
-                    <span class="absolute inset-0 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                        <i class="fas fa-project-diagram mr-2"></i>
-                        Voir mes projets
-                    </span>
-                </a>
-                <a href="#contact" class="group relative border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition overflow-hidden">
-                    <span class="relative z-10 flex items-center">
-                        <i class="fas fa-envelope mr-2"></i>
-                        Me contacter
-                    </span>
-                    <div class="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
-                    <span class="absolute inset-0 flex items-center justify-center text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <i class="fas fa-envelope mr-2"></i>
-                        Me contacter
-                    </span>
-                </a>
-            </div>
-
-            <!-- Icônes de compétences flottantes -->
-            <div class="absolute bottom-20 left-0 right-0 flex justify-center space-x-8 opacity-50">
-                <i class="fab fa-html5 text-2xl animate-float-delay-1"></i>
-                <i class="fab fa-css3-alt text-2xl animate-float-delay-2"></i>
-                <i class="fab fa-js text-2xl animate-float-delay-3"></i>
-                <i class="fab fa-react text-2xl animate-float-delay-4"></i>
+            <!-- Photo à droite -->
+            <div class="flex-1 flex justify-center md:justify-end fade-in-up delay-2">
+                <div class="relative group">
+                    <div class="halo-anim"></div>
+                    <img src="image/meee.jpg" alt="Photo de profil" class="w-56 h-56 rounded-full border-4 border-white dark:border-gray-800 shadow-xl object-cover relative z-10">
+                </div>
             </div>
         </div>
-
-        <!-- Flèche de défilement animée -->
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2">
-            <a href="#apropos" class="text-white animate-bounce-slow">
-                <i class="fas fa-chevron-down text-2xl"></i>
+        <!-- Flèche scroll -->
+        <div class="flex flex-col items-center mt-16">
+            <a href="#apropos" class="w-12 h-12 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900 shadow animate-bounce">
+                <i class="fas fa-arrow-down text-2xl text-blue-600 dark:text-blue-300"></i>
             </a>
+            <span class="text-gray-500 dark:text-gray-400 text-sm mt-2">Faites défiler pour en savoir plus</span>
         </div>
     </section>
 
@@ -194,11 +208,90 @@
                         </div>
                         <div class="skill-bar">
                             <div class="flex justify-between mb-2">
-                                <span class="text-gray-800 dark:text-white">React</span>
-                                <span class="text-gray-600 dark:text-gray-300">80%</span>
+                                <span class="text-gray-800 dark:text-white">C#</span>
+                                <span class="text-gray-600 dark:text-gray-300">70%</span>
                             </div>
                             <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded">
-                                <div class="h-full bg-blue-500 dark:bg-blue-600 rounded skill-progress" data-width="80"></div>
+                                <div class="h-full bg-blue-500 dark:bg-blue-600 rounded skill-progress" data-width="70"></div>
+                            </div>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-800 dark:text-white">C</span>
+                                <span class="text-gray-600 dark:text-gray-300">60%</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded">
+                                <div class="h-full bg-blue-500 dark:bg-blue-600 rounded skill-progress" data-width="60"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Compétences Bureautiques -->
+    <section class="py-16 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white" data-aos="fade-up">Compétences Bureautiques</h2>
+            <div class="max-w-3xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300" data-aos="fade-up">
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-blue-100 dark:bg-blue-900 p-3 rounded-lg">
+                                <i class="fas fa-database text-blue-500 text-2xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">MCD</h3>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                    <div class="bg-blue-500 h-2 rounded-full" style="width: 85%"></div>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm mt-2">Maîtrise des concepts de modélisation</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-green-100 dark:bg-green-900 p-3 rounded-lg">
+                                <i class="fas fa-file-excel text-green-500 text-2xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">Excel</h3>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                    <div class="bg-green-500 h-2 rounded-full" style="width: 90%"></div>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm mt-2">Formules avancées et tableaux croisés dynamiques</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-blue-100 dark:bg-blue-900 p-3 rounded-lg">
+                                <i class="fas fa-file-word text-blue-600 text-2xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">Word</h3>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                    <div class="bg-blue-600 h-2 rounded-full" style="width: 95%"></div>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm mt-2">Mise en page professionnelle et styles avancés</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-red-100 dark:bg-red-900 p-3 rounded-lg">
+                                <i class="fas fa-file-powerpoint text-red-500 text-2xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">PowerPoint</h3>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                    <div class="bg-red-500 h-2 rounded-full" style="width: 90%"></div>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm mt-2">Présentations dynamiques et animations</p>
                             </div>
                         </div>
                     </div>
@@ -213,65 +306,53 @@
             <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white" data-aos="fade-up">Mes Projets</h2>
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Carte Projet 1 -->
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition group" data-aos="fade-up">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
                     <div class="relative overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
                              alt="Projet E-commerce" 
-                             class="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <div class="absolute bottom-4 left-4 right-4">
-                                <div class="flex space-x-2">
-                                    <span class="px-2 py-1 bg-blue-500 text-white text-sm rounded">React</span>
-                                    <span class="px-2 py-1 bg-green-500 text-white text-sm rounded">Node.js</span>
-                                </div>
-                            </div>
-                        </div>
+                             class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">Projet E-commerce</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Une plateforme e-commerce moderne avec React et Node.js</p>
+                        <p class="text-gray-600 dark:text-gray-300">Une plateforme e-commerce moderne développée avec HTML, CSS et JavaScript</p>
+                        <div class="flex flex-wrap gap-3 mt-4">
+                            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded-full text-sm">HTML</span>
+                            <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-300 rounded-full text-sm">CSS</span>
+                            <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-600 dark:text-yellow-300 rounded-full text-sm">JavaScript</span>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Carte Projet 2 -->
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition group" data-aos="fade-up" data-aos-delay="100">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
                     <div class="relative overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
                              alt="Application de Gestion" 
-                             class="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <div class="absolute bottom-4 left-4 right-4">
-                                <div class="flex space-x-2">
-                                    <span class="px-2 py-1 bg-purple-500 text-white text-sm rounded">Vue.js</span>
-                                    <span class="px-2 py-1 bg-yellow-500 text-white text-sm rounded">Firebase</span>
-                                </div>
-                            </div>
-                        </div>
+                             class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">Application de Gestion</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Système de gestion de tâches avec Vue.js</p>
+                        <p class="text-gray-600 dark:text-gray-300">Application de bureau développée en C#</p>
+                        <div class="flex flex-wrap gap-3 mt-4">
+                            <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 rounded-full text-sm">C#</span>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Carte Projet 3 -->
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition group" data-aos="fade-up" data-aos-delay="200">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
                     <div class="relative overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
                              alt="Portfolio Artistique" 
-                             class="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <div class="absolute bottom-4 left-4 right-4">
-                                <div class="flex space-x-2">
-                                    <span class="px-2 py-1 bg-pink-500 text-white text-sm rounded">HTML/CSS</span>
-                                    <span class="px-2 py-1 bg-blue-400 text-white text-sm rounded">JavaScript</span>
-                                </div>
-                            </div>
-                        </div>
+                             class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">Portfolio Artistique</h3>
                         <p class="text-gray-600 dark:text-gray-300">Site vitrine pour un artiste avec animations CSS</p>
+                        <div class="flex flex-wrap gap-3 mt-4">
+                            <span class="px-3 py-1 bg-pink-100 dark:bg-pink-900 text-pink-600 dark:text-pink-300 rounded-full text-sm">HTML/CSS</span>
+                            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded-full text-sm">JavaScript</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -296,7 +377,7 @@
                 <div class="space-y-6">
                     <h3 class="text-3xl font-bold text-gray-800 dark:text-white">Projet E-commerce</h3>
                     <p class="text-gray-600 dark:text-gray-300">
-                        Une plateforme e-commerce moderne développée avec React et Node.js. Le projet inclut des fonctionnalités avancées comme :
+                        Une plateforme e-commerce moderne développée avec HTML, CSS et JavaScript. Le projet inclut des fonctionnalités avancées comme :
                     </p>
                     <ul class="space-y-3">
                         <li class="flex items-center text-gray-600 dark:text-gray-300">
@@ -313,9 +394,9 @@
                         </li>
                     </ul>
                     <div class="flex flex-wrap gap-3">
-                        <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded-full text-sm">React</span>
-                        <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-300 rounded-full text-sm">Node.js</span>
-                        <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-600 dark:text-yellow-300 rounded-full text-sm">MongoDB</span>
+                        <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded-full text-sm">HTML</span>
+                        <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-300 rounded-full text-sm">CSS</span>
+                        <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-600 dark:text-yellow-300 rounded-full text-sm">JavaScript</span>
                     </div>
                     <a href="#" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition">
                         Voir le projet <i class="fas fa-arrow-right ml-2"></i>
@@ -328,26 +409,24 @@
                 <div class="order-2 md:order-1 space-y-6">
                     <h3 class="text-3xl font-bold text-gray-800 dark:text-white">Application de Gestion</h3>
                     <p class="text-gray-600 dark:text-gray-300">
-                        Une application de gestion de tâches complète développée avec Vue.js et Firebase. Caractéristiques principales :
+                        Une application de bureau complète développée en C#. Caractéristiques principales :
                     </p>
                     <ul class="space-y-3">
                         <li class="flex items-center text-gray-600 dark:text-gray-300">
                             <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                            Authentification en temps réel
+                            Interface utilisateur intuitive
                         </li>
                         <li class="flex items-center text-gray-600 dark:text-gray-300">
                             <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                            Synchronisation multi-appareils
+                            Gestion des données en temps réel
                         </li>
                         <li class="flex items-center text-gray-600 dark:text-gray-300">
                             <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                            Tableaux de bord personnalisables
+                            Rapports personnalisables
                         </li>
                     </ul>
                     <div class="flex flex-wrap gap-3">
-                        <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 rounded-full text-sm">Vue.js</span>
-                        <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-600 dark:text-yellow-300 rounded-full text-sm">Firebase</span>
-                        <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded-full text-sm">Tailwind CSS</span>
+                        <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 rounded-full text-sm">C#</span>
                     </div>
                     <a href="#" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition">
                         Voir le projet <i class="fas fa-arrow-right ml-2"></i>
@@ -449,7 +528,7 @@
                                 </div>
                                 <div>
                                     <p class="text-sm text-white/80">Email</p>
-                                    <p class="font-semibold">contact@example.com</p>
+                                    <p class="font-semibold">midomkhier@gmail.com</p>
                                 </div>
                             </div>
                             <div class="flex items-center space-x-4">
@@ -458,7 +537,7 @@
                                 </div>
                                 <div>
                                     <p class="text-sm text-white/80">Téléphone</p>
-                                    <p class="font-semibold">+33 6 12 34 56 78</p>
+                                    <p class="font-semibold">0777753186</p>
                                 </div>
                             </div>
                             <div class="flex items-center space-x-4">
@@ -467,7 +546,7 @@
                                 </div>
                                 <div>
                                     <p class="text-sm text-white/80">Localisation</p>
-                                    <p class="font-semibold">Paris, France</p>
+                                    <p class="font-semibold">Casablanca, Maroc</p>
                                 </div>
                             </div>
                         </div>
@@ -476,7 +555,7 @@
                     <!-- Réseaux sociaux -->
                     <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl">
                         <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Suivez-moi</h3>
-                        <div class="grid grid-cols-4 gap-4">
+                        <div class="grid grid-cols-3 gap-4">
                             <a href="#" class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg text-center transform hover:scale-110 transition duration-300">
                                 <i class="fab fa-github text-2xl text-gray-800 dark:text-white"></i>
                             </a>
@@ -484,10 +563,7 @@
                                 <i class="fab fa-linkedin text-2xl text-blue-600"></i>
                             </a>
                             <a href="#" class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg text-center transform hover:scale-110 transition duration-300">
-                                <i class="fab fa-twitter text-2xl text-blue-400"></i>
-                            </a>
-                            <a href="#" class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg text-center transform hover:scale-110 transition duration-300">
-                                <i class="fab fa-instagram text-2xl text-pink-500"></i>
+                                <i class="fab fa-facebook text-2xl text-blue-600"></i>
                             </a>
                         </div>
                     </div>
@@ -607,8 +683,60 @@
             </div>
         </div>
     </footer>
-
+    
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="script.js"></script>
+    <script>
+        // Gestion du mode sombre
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        // Appliquer la préférence système au premier chargement
+        if (!localStorage.getItem('theme')) {
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                html.classList.add('dark');
+            }
+        }
+
+        // Appliquer la préférence enregistrée
+        if (localStorage.getItem('theme') === 'dark') {
+            html.classList.add('dark');
+        } else if (localStorage.getItem('theme') === 'light') {
+            html.classList.remove('dark');
+        }
+
+        // Bascule au clic
+        themeToggle.addEventListener('click', () => {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Observer les changements de préférence système
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            if (!localStorage.getItem('theme')) {
+                if (e.matches) {
+                    html.classList.add('dark');
+                } else {
+                    html.classList.remove('dark');
+                }
+            }
+        });
+
+        // Menu burger mobile
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenu = document.getElementById('close-menu');
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+        });
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+    </script>
 </body>
 </html>
